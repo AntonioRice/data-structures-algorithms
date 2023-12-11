@@ -21,15 +21,16 @@ function TreeNode(val, left, right) {
 }
 
 // recursive
-var maxDepth = function (root) {
-  if (root == null) return 0;
+// var maxDepth = function (root) {
+//   if (root == null) return 0;
 
-  let left = maxDepth(root.left);
-  let right = maxDepth(root.right);
+//   let left = maxDepth(root.left);
+//   let right = maxDepth(root.right);
 
-  return Math.max(left, right) + 1; // adding one to act out a counter as we traverse down
-};
+//   return Math.max(left, right) + 1; // adding one to act out a counter as we traverse down
+// };
 
+//Bredth First Search uses a queue. Adds each level's children to queue and keep track of level count
 var maxDepth = function (root) {
   if (root == null) return 0;
   let queue = [];
@@ -57,7 +58,6 @@ var maxDepth = function (root) {
 
   return level;
 };
-//Bredth First Search uses a queue. Adds each level's children to queue and keep track of level count
 
 const tree1 = new TreeNode(
   3,
