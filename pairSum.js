@@ -57,10 +57,10 @@ var pairSum = function (head) {
     curr.next = prev;
     [prev, curr] = [curr, next];
   }
-
   // set slow to previous (head)
   slow = prev;
 
+  // compare the 2 lists, using slow as the break since its smaller than fast
   while (slow != null) {
     maxSum = Math.max(maxSum, fast.value + slow.value);
     slow = slow.next;
