@@ -27,8 +27,37 @@ var maxDepth = function (root) {
   let left = maxDepth(root.left);
   let right = maxDepth(root.right);
 
-  return Math.max(left, right) + 1; //adding one to act out a counter as we traverse
+  return Math.max(left, right) + 1; // adding one to act out a counter as we traverse down
 };
+
+var maxDepth = function (root) {
+  if (root == null) return 0;
+  let queue = [];
+  let level = 0;
+
+  // add root to queue
+  queue.push(root);
+
+  //loop through queue
+  while (queue.length) {
+    // loop through each item in queue (child level)
+    for (let i = 0; i < queue.length; i++) {
+      let node = queue.shift();
+      // add left and right nodes to queue to be checked for children
+      if (node.left != null) {
+        queue.push(node.left);
+      }
+      if (node.right != null) {
+        queue.push(node.right);
+      }
+    }
+    // after each check, add the levels
+    level += 1;
+  }
+
+  return level;
+};
+//Bredth First Search uses a queue. Adds each level's children to queue and keep track of level count
 
 const tree1 = new TreeNode(
   3,
