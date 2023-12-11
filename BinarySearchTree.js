@@ -44,7 +44,7 @@ Dequeue the node from the front, Read the node's value, enqueue the node's left 
 **/
 
 // Implementation
-class Node {
+class TreeNode {
   constructor(value) {
     this.value = value;
     this.left = null;
@@ -60,7 +60,7 @@ class BinarySearchTree {
     return this.root === null;
   }
   insert(value) {
-    const newNode = new Node(value);
+    const newNode = new TreeNode(value);
     if (this.isEmpty()) {
       this.root = newNode;
     } else {
@@ -174,22 +174,24 @@ class BinarySearchTree {
   }
 }
 
-const bst = new BinarySearchTree();
-console.log(bst.isEmpty());
-bst.insert(10);
-bst.insert(5);
-bst.insert(15);
-bst.insert(3);
-bst.insert(7);
-bst.insert(13);
-bst.insert(17);
-bst.insert(2);
-console.log(bst.search(bst.root, 10));
-console.log(bst.search(bst.root, 7));
-bst.inOrder();
-bst.preOrder();
-bst.postOrder();
-bst.levelOrder();
-console.log(bst.min());
-console.log(bst.max());
-console.log(bst.height(bst.root));
+// const bst = new BinarySearchTree();
+// console.log(bst.isEmpty());
+// bst.insert(10);
+// bst.insert(5);
+// bst.insert(15);
+// bst.insert(3);
+// bst.insert(7);
+// bst.insert(13);
+// bst.insert(17);
+// bst.insert(2);
+// console.log(bst.search(bst.root, 10));
+// console.log(bst.search(bst.root, 7));
+// bst.inOrder();
+// bst.preOrder();
+// bst.postOrder();
+// bst.levelOrder();
+// console.log(bst.min());
+// console.log(bst.max());
+// console.log(bst.height(bst.root));
+
+module.exports = BinarySearchTree;
