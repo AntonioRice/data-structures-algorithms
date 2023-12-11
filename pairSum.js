@@ -15,19 +15,50 @@ const LinkedList = require("./linkedLists");
  * @return {number}
  */
 
-// using a stack - O(n) space
+// // using a stack - O(n) space
+// var pairSum = function (head) {
+//   const stack = [];
+//   let maxSum = -Infinity;
+//   let slow = head;
+
+//   while (slow != null) {
+//     stack.push(slow.value);
+//     slow = slow.next;
+//   }
+
+//   for (let i = 0; i < stack.length; i++) {
+//     maxSum = Math.max(maxSum, stack[i] + stack.pop());
+//   }
+
+//   return maxSum;
+// };
+
+// without stack - O(1) space
 var pairSum = function (head) {
-  const stack = [];
   let maxSum = -Infinity;
   let slow = head;
+  let fast = head.next;
 
-  while (slow != null) {
-    stack.push(slow.value);
+  while (fast != null && fast.next != null) {
+    fast = fast.next.next;
     slow = slow.next;
   }
+  fast = head;
 
-  for (let i = 0; i < stack.length; i++) {
-    maxSum = Math.max(maxSum, stack[i] + stack.pop());
+  let prev = null;
+  let curr = slow;
+
+  while (curr != null) {
+    let next = curr.next;
+    curr.next = prev;
+    [prev, curr] = [curr, next];
+  }
+  slow = prev;
+
+  while (slow != null && fast != null) {
+    maxSum = Math.max(maxSum, fast.value + slow.value);
+    slow = slow.next;
+    fast = fast.next;
   }
 
   return maxSum;
