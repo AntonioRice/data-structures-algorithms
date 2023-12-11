@@ -37,25 +37,31 @@ const LinkedList = require("./linkedLists");
 var pairSum = function (head) {
   let maxSum = -Infinity;
   let slow = head;
-  let fast = head.next;
+  let fast = head;
 
+  //find the middle of the linked list [5, 4, 2, 1]
   while (fast != null && fast.next != null) {
     fast = fast.next.next;
     slow = slow.next;
   }
+  // at the end of loop midpoint now is at the slow index (4)
+  // next, rest fast back to head
   fast = head;
 
+  //reverse the nodes starting from the midpoint to end
   let prev = null;
   let curr = slow;
 
-  while (curr != null) {
+  while (curr) {
     let next = curr.next;
     curr.next = prev;
     [prev, curr] = [curr, next];
   }
+
+  // set slow to previous (head)
   slow = prev;
 
-  while (slow != null && fast != null) {
+  while (slow != null) {
     maxSum = Math.max(maxSum, fast.value + slow.value);
     slow = slow.next;
     fast = fast.next;
