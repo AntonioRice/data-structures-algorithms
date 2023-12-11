@@ -14,15 +14,53 @@ const LinkedList = require("./linkedLists");
  * @param {ListNode} head
  * @return {number}
  */
-var pairSum = function (head) {};
+
+// using a stack - O(n) space
+var pairSum = function (head) {
+  const stack = [];
+  let maxSum = -Infinity;
+  let slow = head;
+
+  while (slow != null) {
+    stack.push(slow.value);
+    slow = slow.next;
+  }
+
+  for (let i = 0; i < stack.length; i++) {
+    maxSum = Math.max(maxSum, stack[i] + stack.pop());
+  }
+
+  return maxSum;
+};
 
 const list1 = new LinkedList();
-//[1,2,3,4,5]
-list1.append(1);
-list1.append(2);
-list1.append(3);
-list1.append(4);
+// [5,4,2,1]
 list1.append(5);
+list1.append(4);
+list1.append(2);
+list1.append(1);
 
 var result = pairSum(list1.head);
-console.log(JSON.stringify(result)); //[1,3,5,2,4]
+console.log(result); // 6
+
+const list2 = new LinkedList();
+// [4,2,2,3]
+list2.append(4);
+list2.append(2);
+list2.append(2);
+list2.append(3);
+
+var result = pairSum(list2.head);
+console.log(result); // 7
+
+const list3 = new LinkedList();
+// [5,4,2,1,10,20]
+list3.append(5);
+list3.append(4);
+list3.append(2);
+list3.append(1);
+list3.append(10);
+list3.append(20);
+
+var result = pairSum(list3.head);
+console.log(result); // 25
