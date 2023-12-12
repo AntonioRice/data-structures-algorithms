@@ -11,29 +11,6 @@
  * Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
  * It is guaranteed that every call to ping uses a strictly larger value of t than the previous call.
  */
-// class Queue {
-//   constructor() {
-//     this.items = {};
-//     this.rear = 0;
-//     this.front = 0;
-//   }
-
-//   enqueue(item) {
-//     // add item to the rear of the queue
-//     this.items[this.rear] = item;
-//     this.rear++;
-//   }
-//   dequeue() {
-//     //remote item from the front of the queue
-//     const item = this.front[this.item];
-//     delete this.items[this.front];
-//     this.front++;
-//     return item;
-//   }
-//   size() {
-//     return this.rear - this.front;
-//   }
-// }
 
 /**
  * @param {number} t
