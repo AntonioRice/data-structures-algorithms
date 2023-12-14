@@ -1,4 +1,11 @@
 const generateTreeFromArray = require("./generateTreeFromArray.js");
+
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
+}
+
 /**
  * Given the root of a binary tree and an integer targetSum, return the number of paths where the sum of the values along the path equals targetSum.
  * The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
@@ -6,11 +13,7 @@ const generateTreeFromArray = require("./generateTreeFromArray.js");
  * @param {number} targetSum
  * @return {number}
  */
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
+
 var pathSum = function (root, targetSum) {
   // initialize a count int to keep track of how many time the targetSum was observed
   const hashMap = new Map(); // {sum: freq}
