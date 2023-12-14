@@ -11,6 +11,7 @@ function TreeNode(val, left, right) {
  * @param {TreeNode} root
  * @return {number[]}
  */
+// using an array as a queue -> time O(n), space O(n)
 var rightSideView = function (root) {
   const result = [];
   const queue = [];
@@ -38,6 +39,26 @@ var rightSideView = function (root) {
 
   return result;
 };
+
+// // using recursion
+// var rightSideView = function (root) {
+//   const result = [];
+
+//   if (!root) return result;
+
+//   bfs(root, 0);
+
+//   return result;
+
+//   function bfs(node, depth) {
+//     if (!node) return;
+
+//     result[depth] = node.val;
+
+//     bfs(node.left, depth + 1);
+//     bfs(node.right, depth + 1);
+//   }
+// };
 
 const root1 = generateTreeFromArray([1, 2, 3, null, 5, null, 4]);
 console.log(rightSideView(root1)); // [1,3,4]
