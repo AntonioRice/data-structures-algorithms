@@ -1,4 +1,4 @@
-const generateTreeFromArray = require("./generateTreeFromArray.js");
+const generateTreeFromArray = require("../generateTreeFromArray.js");
 
 function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val;

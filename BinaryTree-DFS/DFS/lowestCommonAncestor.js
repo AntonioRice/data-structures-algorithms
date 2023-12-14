@@ -1,4 +1,4 @@
-const generateTreeFromArray = require("./generateTreeFromArray.js");
+const generateTreeFromArray = require("../generateTreeFromArray.js");
 
 //Definition for a binary tree node.
 function TreeNode(val) {
