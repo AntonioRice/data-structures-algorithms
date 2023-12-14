@@ -4,12 +4,12 @@ function TreeNode(val, left, right) {
   this.right = right === undefined ? null : right;
 }
 
-function generateTreeFromArray(arr) {
+function generateTreeFromArray(arr, inputClass, inputTreeNode) {
   if (!arr.length) {
     return null;
   }
 
-  const root = new TreeNode(arr[0]);
+  const root = inputClass ? new inputTreeNode(arr[0]) : new TreeNode(arr[0]);
   const queue = [root];
   let index = 1;
 
@@ -17,13 +17,13 @@ function generateTreeFromArray(arr) {
     const current = queue.shift();
 
     if (arr[index] !== null) {
-      current.left = new TreeNode(arr[index]);
+      current.left = inputClass ? new inputTreeNode(arr[index]) : new TreeNode(arr[index]);
       queue.push(current.left);
     }
     index++;
 
     if (index < arr.length && arr[index] !== null) {
-      current.right = new TreeNode(arr[index]);
+      current.right = inputClass ? new inputTreeNode(arr[index]) : new TreeNode(arr[index]);
       queue.push(current.right);
     }
     index++;
