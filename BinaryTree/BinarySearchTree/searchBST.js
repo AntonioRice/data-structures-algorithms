@@ -8,6 +8,9 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * You are given the root of a binary search tree (BST) and an integer val.
+ * Find the node in the BST that the node's value equals val and return the subtree rooted with that node.
+ * If such a node does not exist, return null.
  * @param {TreeNode} root
  * @param {number} val
  * @return {TreeNode}
@@ -56,4 +59,4 @@ const root1 = generateTreeFromArray([4, 2, 7, 1, 3]);
 console.log(searchBST(root1, 2)); //[2,1,3]
 
 const root2 = generateTreeFromArray([4, 2, 7, 1, 3]);
-console.log(searchBST(root1, 5)); //[]
+console.log(searchBST(root2, 5)); //[]
