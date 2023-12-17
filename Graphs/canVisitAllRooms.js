@@ -9,16 +9,34 @@
  * @return {boolean}
  */
 
-//DFS soultion using a set to keep track of unlocked rooms
+// //DFS soultion using a set to keep track of unlocked rooms
+// const canVisitAllRooms = function (rooms) {
+//   const unlockedRooms = new Set([0]);
+
+//   for (const room of unlockedRooms) {
+//     // for each room, add keys to set
+//     rooms[room].forEach((key) => unlockedRooms.add(key));
+//   }
+
+//   // if the number rooms we manage to unlock does not equal the number of available rooms, we know that we didn't visit all..
+//   return unlockedRooms.size === rooms.length;
+// };
+
+//DFS - recursive solution
 const canVisitAllRooms = function (rooms) {
   const unlockedRooms = new Set([0]);
 
-  for (const room of unlockedRooms) {
-    // for each room, add keys to set
-    rooms[room].forEach((key) => unlockedRooms.add(key));
-  }
+  const visitRooms = (room) => {
+    rooms[room].forEach((key) => {
+      if (!unlockedRooms.has(key)) {
+        unlockedRooms.add(key);
+        visitRooms(key);
+      }
+    });
+  };
 
-  // if the number rooms we manage to unlock does not equal the number of available rooms, we know that we didn't visit all..
+  visitRooms(0);
+
   return unlockedRooms.size === rooms.length;
 };
 
