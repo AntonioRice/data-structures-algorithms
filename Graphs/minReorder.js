@@ -11,34 +11,67 @@
  * @param {number[][]} connections
  * @return {number}
  */
-// BFS - time/space O(n + m)
+// // BFS - time/space O(n + m)
+// var minReorder = function (n, connections) {
+//   const visted = new Set();
+//   let reOrders = 0;
+
+//   const adjacencyList = new Map();
+//   for (const [origin, destination] of connections) {
+//     adjacencyList.set(origin, (adjacencyList.get(origin) || []).concat([[destination, 1]]));
+//     adjacencyList.set(destination, (adjacencyList.get(destination) || []).concat([[origin, 0]]));
+//   }
+
+//   const queue = [0];
+
+//   while (queue.length) {
+//     const originNode = queue.shift();
+//     visted.add(originNode);
+
+//     const destinationNodes = adjacencyList.get(originNode);
+
+//     if (!destinationNodes) return;
+
+//     for (const [neighbor, weight] of destinationNodes) {
+//       if (!visted.has(neighbor)) {
+//         reOrders += weight;
+//         queue.push(neighbor);
+//       }
+//     }
+//   }
+
+//   return reOrders;
+// };
+
+// DFS - time/space O(n)
 var minReorder = function (n, connections) {
-  const visted = new Set();
+  const visted = new Set([0]);
   let reOrders = 0;
 
   const adjacencyList = new Map();
-  for (const [origin, destination] of connections) {
-    adjacencyList.set(origin, (adjacencyList.get(origin) || []).concat([[destination, 1]]));
-    adjacencyList.set(destination, (adjacencyList.get(destination) || []).concat([[origin, 0]]));
+  for (const [from, to] of connections) {
+    if (!adjacencyList.has(from)) adjacencyList.set(from, []);
+    if (!adjacencyList.has(to)) adjacencyList.set(to, []);
+
+    adjacencyList.get(from).push([to, 1]); // edges that need to be flipped
+    adjacencyList.get(to).push([from, 0]); // edges that do not need to be flipped
   }
 
-  const queue = [0];
+  function dfs(node) {
+    const currNode = adjacencyList.get(node);
+    if (!currNode) return;
 
-  while (queue.length) {
-    const originNode = queue.shift();
-    visted.add(originNode);
-
-    const destinationNodes = adjacencyList.get(originNode);
-
-    if (!destinationNodes) return;
-
-    for (const [neighbor, weight] of destinationNodes) {
+    for (const [neighbor, weight] of currNode) {
       if (!visted.has(neighbor)) {
         reOrders += weight;
-        queue.push(neighbor);
+        visted.add(neighbor);
+        dfs(neighbor);
       }
     }
   }
+
+  // start dfs from 0
+  dfs(0);
 
   return reOrders;
 };
