@@ -29,6 +29,7 @@ var orangesRotting = function (grid) {
     }
   }
 
+  // bfs - time O(r*c), space O(r*c)
   while (fresh && queue.length > 0) {
     const nextQueue = [];
 
