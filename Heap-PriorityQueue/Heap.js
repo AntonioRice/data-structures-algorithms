@@ -1,81 +1,81 @@
 class Heap {
   constructor() {
-    this.data = [];
+    this.heap = [];
   }
 
   // helper methods to get index of parent, left, and right nodes of i
-  getParentIndex(i) {
+  parent(i) {
     return Math.floor((i - 1) / 2);
   }
-  getLeftChildIndex(i) {
+  leftChild(i) {
     return 2 * i + 1;
   }
-  getRightChildIndex(i) {
+  rightChild(i) {
     return 2 * i + 2;
   }
-  swap(i1, i2) {
-    [this.data[i1], this.data[i2]] = [this.data[i2], this.data[i1]];
+  swap(i, j) {
+    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
   }
-  // add to end of element
-  push(key) {
-    this.data.push(key);
+  insert(value) {
+    this.heap.push(value);
     this.heapifyUp();
   }
-  //biggest element from MaxHeap
-  poll() {
-    const maxVal = this.data[0];
-    this.data[0] = this.data[this.data.length - 1];
-    this.data.length--;
-    this.heapifyDown(); //start from the top, and go to the bottom because we took an element from the top and moved it to the end
+  remove() {
+    if (this.heap.length === 0) return;
+    if (this.heap.length === 1) return this.heap.pop();
 
-    return maxVal;
+    const max = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.heapifyDown(0);
+
+    return max;
   }
   heapifyUp() {
-    let currentIndex = this.data.length - 1;
-
-    while (this.data[currentIndex] > this.data[this.getParentIndex(currentIndex)]) {
-      this.swap(currentIndex, this.getParentIndex(currentIndex));
-      currentIndex = this.getParentIndex(currentIndex);
+    let index = this.heap.length - 1;
+    while (index > 0 && this.heap[index] > this.heap[this.parent(index)]) {
+      this.swap(index, this.parent(index));
+      index = this.parent(index);
     }
   }
-  heapifyDown() {
-    let currentIndex = 0; //start from the top
+  heapifyDown(index) {
+    let maxIndex = index;
+    const left = this.leftChild(index);
+    const right = this.rightChild(index);
+    const heapSize = this.heap.length;
 
-    while (this.data[this.getLeftChildIndex(currentIndex)]) {
-      let biggestChildIndex = this.getLeftChildIndex(currentIndex);
-      if (
-        this.data[this.getRightChildIndex(currentIndex)] &&
-        this.data[this.getRightChildIndex(currentIndex)] > this.data[this.getLeftChildIndex(currentIndex)]
-      ) {
-        biggestChildIndex = this.getRightChildIndex(currentIndex);
-      }
+    if (left < heapSize && this.heap[left] > this.heap[maxIndex]) {
+      maxIndex = left;
+    }
 
-      if (this.data[currentIndex] < this.data[biggestChildIndex]) {
-        this.swap(currentIndex, biggestChildIndex);
-        currentIndex = biggestChildIndex;
-      } else {
-        return;
-      }
+    if (right < heapSize && this.heap[right] > this.heap[maxIndex]) {
+      maxIndex = right;
+    }
+
+    if (index !== maxIndex) {
+      this.swap(index, maxIndex);
+      this.heapifyDown(maxIndex);
     }
   }
 }
 
-const heap = new Heap();
-heap.push(25);
-heap.push(5);
-heap.push(40);
-heap.push(70);
-heap.push(90);
-heap.push(44);
+module.exports = Heap;
 
-console.log(heap.data.join(","));
+// const heap = new Heap();
+// heap.push(25);
+// heap.push(5);
+// heap.push(40);
+// heap.push(70);
+// heap.push(90);
+// heap.push(44);
 
-const a = [];
-a.push(heap.poll());
-a.push(heap.poll());
-a.push(heap.poll());
-a.push(heap.poll());
-a.push(heap.poll());
+// console.log(heap.heap.join(","));
 
-console.log("Top 5 items: ", a);
-console.log(heap.data.join(","));
+// const a = [];
+// a.push(heap.poll());
+// a.push(heap.poll());
+// a.push(heap.poll());
+// a.push(heap.poll());
+// a.push(heap.poll());
+
+// console.log("Top 5 items: ", a);
+// console.log(heap.heap.join(","));
