@@ -1,3 +1,6 @@
+/**
+ * max-heap implementation
+ */
 class Heap {
   constructor() {
     this.heap = [];
