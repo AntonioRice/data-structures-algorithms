@@ -43,15 +43,15 @@ class MyArray {
   }
 }
 
-const newArray = new MyArray();
-newArray.push("!");
-newArray.push("to");
-newArray.push("hi");
-newArray.delete(1);
-newArray.push("hdsd");
-newArray.push("i");
-newArray.push("dhgrh");
-console.log(newArray);
+// const newArray = new MyArray();
+// newArray.push("!");
+// newArray.push("to");
+// newArray.push("hi");
+// newArray.delete(1);
+// newArray.push("hdsd");
+// newArray.push("i");
+// newArray.push("dhgrh");
+// console.log(newArray);
 
 // const arr = [1, 2, 3, 4, "test"];
 // arr.push(5); //O(1)
@@ -69,3 +69,28 @@ console.log(newArray);
 // // }
 
 // const strings = ["a", "b", "c", "d"]; // 4*4 = 16 bytes of storage in a 32bit system
+
+const mergeSortedArrays = (array1, array2) => {
+  let sortedArr = [];
+  let i = 0;
+  let j = 0;
+
+  if (!array1.length) return array2;
+  if (!array2.length) return array1;
+
+  while (array1[i] || array2[j]) {
+    if (!array2[j] || array1[i] < array2[j]) {
+      sortedArr.push(array1[i]);
+      i++;
+    } else {
+      sortedArr.push(array2[j]);
+      j++;
+    }
+  }
+
+  return sortedArr;
+};
+
+const array1 = [0];
+const array2 = [4, 6, 30];
+console.log(mergeSortedArrays(array1, array2));
