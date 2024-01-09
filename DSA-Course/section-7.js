@@ -1,4 +1,4 @@
-// First recuring char
+// First recurring char
 
 const firstRecurringChar = (arr) => {
   const map = {};
