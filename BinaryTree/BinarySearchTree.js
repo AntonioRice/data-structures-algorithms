@@ -33,13 +33,14 @@ Deletion - remove a node given its value
 
 Traversals:
 
-Depth First Search (DFS) - Starts at the root node, visits all nodes on left subtree, then all nodes on right subtree
-Pre-Order - Read the data of the node, visit the left subtree, visit the right subtree
-Inorder - Visit the left subtree, read the  detail of node, visit right subtree
-Postorder - visit the left subtree, visit the right subtree, read the details of the node
+Depth First Search (DFS) - Starts at the root node, visits all nodes on left subtree, then all nodes on right subtree (Does path exist problems, uses less memory but can get slow)
+* Pre-Order - Read the data of the node, visit the left subtree, visit the right subtree
+* Inorder - Visit the left subtree, read the  detail of node, visit right subtree
+* Postorder - visit the left subtree, visit the right subtree, read the details of the node
 
-Breadth First Search (BFS) - Create a queue, enqueue the root node, as long as the node exists: 
-Dequeue the node from the front, Read the node's value, enqueue the node's left child if exist, enqueue the node's right child if exist
+Breadth First Search (BFS) - Exploring each level before proceeding to the next (Shortest Path, closer Nodes, but uses more memory)
+*Create a queue, enqueue the root node, as long as the node exists: 
+*Dequeue the node from the front, Read the node's value, enqueue the node's left child if exist, enqueue the node's right child if exist
 
 **/
 
@@ -95,27 +96,37 @@ class BinarySearchTree {
       }
     }
   }
-  preOrder(root) {
+  //dfs -> start with parent and go let to right
+  preOrder(root, list) {
     if (root) {
-      console.log(root.value);
-      this.preOrder(root.left);
-      this.preOrder(root.right);
+      // console.log(root.value);
+      list.push(root.value);
+      this.preOrder(root.left, list);
+      this.preOrder(root.right, list);
     }
+    return list;
   }
-  inOrder(root) {
+  //dfs -> returns results in order (traversing all the way left and then right)
+  inOrder(root, list) {
     if (root) {
-      this.inOrder(root.left);
-      console.log(root.value);
-      this.inOrder(root.right);
+      this.inOrder(root.left, list);
+      // console.log(root.value);
+      list.push(root.value);
+      this.inOrder(root.right, list);
     }
+    return list;
   }
-  postOrder(root) {
+  //dfs -> starts with children first
+  postOrder(root, list) {
     if (root) {
-      this.postOrder(root.left);
-      this.postOrder(root.right);
-      console.log(root.value);
+      this.postOrder(root.left, list);
+      this.postOrder(root.right, list);
+      // console.log(root.value);
+      list.push(root.value);
     }
+    return list;
   }
+  //bfs
   levelOrder() {
     //Use optimized queue
     const queue = [];
@@ -174,19 +185,20 @@ class BinarySearchTree {
   }
 }
 
-// const bst = new BinarySearchTree();
+const bst = new BinarySearchTree();
 // console.log(bst.isEmpty());
-// bst.insert(10);
-// bst.insert(5);
-// bst.insert(15);
-// bst.insert(3);
-// bst.insert(7);
-// bst.insert(13);
-// bst.insert(17);
-// bst.insert(2);
+bst.insert(9);
+bst.insert(4);
+bst.insert(1);
+bst.insert(6);
+bst.insert(20);
+bst.insert(15);
+bst.insert(170);
 // console.log(bst.search(bst.root, 10));
 // console.log(bst.search(bst.root, 7));
-// bst.inOrder();
+console.log(bst.postOrder(bst.root, []));
+console.log(bst.preOrder(bst.root, []));
+console.log(bst.inOrder(bst.root, []));
 // bst.preOrder();
 // bst.postOrder();
 // bst.levelOrder();
