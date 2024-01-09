@@ -1,3 +1,4 @@
+// Selection Sort -> O(n^2) due to nested loops
 const selectionSort = () => {
   for (let i = 0; i < arr.length; i++) {
     let min = i;
