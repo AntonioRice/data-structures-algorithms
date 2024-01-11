@@ -27,9 +27,9 @@ var isValidBST = function (root) {
   return true;
 };
 
-// const root1 = generateTreeFromArray([2, 1, 3]);
-// console.log(isValidBST(root1)); // true
-// const root2 = generateTreeFromArray([5, 1, 4, null, null, 3, 6]);
-// console.log(isValidBST(root2)); // false
+const root1 = generateTreeFromArray([2, 1, 3]);
+console.log(isValidBST(root1)); // true
+const root2 = generateTreeFromArray([5, 1, 4, null, null, 3, 6]);
+console.log(isValidBST(root2)); // false
 const root3 = generateTreeFromArray([5, 4, 6, null, null, 3, 7]);
 console.log(isValidBST(root3)); // false
