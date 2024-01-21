@@ -59,9 +59,22 @@ class LinkedList {
 
     return this.head;
   }
-}
+  insert(index, val) {
+    let i = 0;
+    let prev = this.head;
+    let node = new Node(val);
 
-// const insertNodeAtPosition = () => {};
+    while (i < index - 1) {
+      prev = prev.next;
+      i++;
+    }
+
+    node.next = prev.next;
+    prev.next = node;
+
+    return this.head;
+  }
+}
 
 const list = new LinkedList();
 list.append(1);
@@ -69,6 +82,6 @@ list.append(2);
 list.append(3);
 list.append(4);
 list.append(5);
-list.reverse2();
+list.insert(3, 100);
 
 console.log(JSON.stringify(list));
