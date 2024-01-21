@@ -75,8 +75,10 @@ class LinkedList {
 
     return this.head;
   }
+  //Time: O(n), Space: O(n)
+  hasCycle() {
+    if (this.head == null) return false;
 
-  isCycle() {
     const map = {};
     let curr = this.head;
 
@@ -91,6 +93,24 @@ class LinkedList {
 
     return false;
   }
+  //Time: O(n), Space: O(1)
+  hasCycle2() {
+    if (this.head == null) return false;
+
+    let slow = this.head;
+    let fast = this.head;
+
+    while (slow && fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+
+      if (slow == fast) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
 
 const list = new LinkedList();
@@ -99,9 +119,14 @@ list.append(2);
 list.append(3);
 list.append(4);
 list.append(5);
+list.append(6);
+list.append(7);
+list.append(8);
+list.append(9);
+list.append(10);
 
-list.head.next.next.next = list.head;
+list.head.next.next.next.next = list.head;
 
-console.log(list.isCycle());
+console.log(list.hasCycle2());
 
 // console.log(JSON.stringify(list));
