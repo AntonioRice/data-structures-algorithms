@@ -14,6 +14,8 @@ var letterCombinations = function (digits) {
   return results;
 
   function backtrack(start, path) {
+    if (digits.length < 1) return [];
+
     if (path.length == digits.length) {
       results.push(path);
       return;
@@ -42,7 +44,7 @@ const keypad = (key) => {
 
 const digits = "23";
 console.log(letterCombinations(digits)); // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-// const digits2 = "";
-// console.log(letterCombinations(digits2)); // []
-// const digits3 = "2";
-// console.log(letterCombinations(digits3)); // ["a","b","c"]
+const digits2 = "";
+console.log(letterCombinations(digits2)); // []
+const digits3 = "2";
+console.log(letterCombinations(digits3)); // ["a","b","c"]
