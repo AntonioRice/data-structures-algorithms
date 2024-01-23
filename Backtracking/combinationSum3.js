@@ -10,7 +10,7 @@
  * @return {number[][]}
  */
 
-// Time: O(n choose k), Space O(k)
+// Time: O(n choose k) -> *Binomial Coefficient*, Space O(k)
 var combinationSum3 = function (k, n) {
   const results = [];
   const path = [];
