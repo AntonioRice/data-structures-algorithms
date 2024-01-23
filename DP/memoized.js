@@ -34,10 +34,8 @@ const memoizedAddTo80Two = () => {
 
   return (n) => {
     if (n in cache) {
-      console.log("PULLED");
       return cache[n];
     } else {
-      console.log("SET");
       cache[n] = n + 80;
       return cache[n];
     }
