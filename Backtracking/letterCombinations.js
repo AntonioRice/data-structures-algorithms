@@ -14,7 +14,7 @@ var letterCombinations = function (digits) {
   return results;
 
   function backtrack(start, path) {
-    if (digits.length < 1) return [];
+    if (digits.length < 1) return results;
 
     if (path.length == digits.length) {
       results.push(path);
