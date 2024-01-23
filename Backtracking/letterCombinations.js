@@ -6,6 +6,8 @@
  * @param {string} digits
  * @return {string[]}
  */
+
+// Time: O(3^n * 4^m), Space O(n + m)
 // var letterCombinations = function (digits) {
 //   const results = [];
 
