@@ -27,6 +27,7 @@
 //   }
 // };
 
+// Time: O(3^n * 4^m), Space O(n)
 var letterCombinations = function (digits) {
   const results = [];
 
