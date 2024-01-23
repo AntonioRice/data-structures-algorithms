@@ -6,23 +6,51 @@
  * @param {string} digits
  * @return {string[]}
  */
+// var letterCombinations = function (digits) {
+//   const results = [];
+
+//   if (digits.length == 0) return results;
+
+//   backtrack(0, "");
+
+//   return results;
+
+//   function backtrack(start, str) {
+//     if (str.length == digits.length) {
+//       results.push(str);
+//       return;
+//     }
+
+//     for (const letter of keypad(digits[start])) {
+//       backtrack(start + 1, str.concat(letter));
+//     }
+//   }
+// };
+
 var letterCombinations = function (digits) {
   const results = [];
 
-  backtrack(0, "");
+  if (digits.length == 0) return results;
+
+  dfs(0, digits, []);
 
   return results;
 
-  function backtrack(start, path) {
-    if (digits.length < 1) return results;
-
-    if (path.length == digits.length) {
-      results.push(path);
+  function dfs(i, digits, path) {
+    if (i === digits.length) {
+      results.push(path.join(""));
       return;
     }
 
-    for (const letter of keypad(digits[start])) {
-      backtrack(start + 1, path + letter);
+    let chars = keypad(digits[i]);
+
+    for (const char of chars) {
+      // include in path
+      path.push(char);
+      //dfs incremented
+      dfs(i + 1, digits, path);
+      // remove from path
+      path.pop();
     }
   }
 };
