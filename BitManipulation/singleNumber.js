@@ -8,7 +8,7 @@
 var singleNumber = function (nums) {
   let res = 0;
   for (const num of nums) {
-    res = num ^ res;
+    res = num ^ res; // XOR (num ^ num = 0)
   }
   return res;
 };
