@@ -14,7 +14,7 @@ const addTo80 = () => {
 
 // Memoized solution 1
 const cache = {};
-const memoizedAddTo80 = (n) => {
+const memoizedAddTo80 = (n, cache = {}) => {
   if (n in cache) {
     return cache[n];
   } else {
@@ -52,33 +52,22 @@ const memoizedAddTo80Two = () => {
 // TC --> O(2^n)
 // 0,1,1,2,3,5,8,13,21,34,55,89,144,233...
 const fibonacci = (n) => {
-  if (n < 2) {
-    return n;
-  }
+  if (n < 2) return n;
 
   return fibonacci(n - 1) + fibonacci(n - 2);
 };
 
-// TC -> O(n), SC -> O(n)
-const memoizedFibonacci = () => {
-  const cache = {};
+// Time: O(n), Space: O(n)
+const memoizedFibonacci = (n, memo = {}) => {
+  if (n in memo) return memo[n];
+  if (n < 2) return n;
 
-  return function fib(n) {
-    if (n in cache) {
-      return cache[n];
-    } else {
-      if (n < 2) {
-        return n;
-      } else {
-        cache[n] = fib(n - 1) + fib(n - 2);
-        return cache[n];
-      }
-    }
-  };
+  memo[n] = memoizedFibonacci(n - 1, memo) + memoizedFibonacci(n - 2, memo);
+  return memo[n];
 };
 
-const memoized = memoizedFibonacci();
-console.log(memoized(3));
-console.log(memoized(8));
-console.log(memoized(7));
-console.log(memoized(100));
+console.log(memoizedFibonacci(0));
+console.log(memoizedFibonacci(1));
+console.log(memoizedFibonacci(2));
+console.log(memoizedFibonacci(3));
+console.log(memoizedFibonacci(4));
