@@ -46,7 +46,8 @@ const memoHowSum = (nums, targetSum, memo = {}) => {
 // console.log(memoHowSum([14, 7], 300));
 
 // bestSum => "shorest path"
-//
+// Time O(n^m * m) exponentional, Space: O(m^2)
+// memoized time: O(m*n*m) => O(m^2), Space O(m^2)
 const bestSum = (nums, targetSum) => {
   if (targetSum === 0) return [];
   if (targetSum < 0) return null;
@@ -92,3 +93,4 @@ const memoAllCombinations = (nums, targetSum, memo = {}) => {
   return memo[targetSum];
 };
 console.log(memoAllCombinations([5, 3, 4, 7], 7));
+console.log(memoAllCombinations([5, 3, 4, 7, 25], 100));
