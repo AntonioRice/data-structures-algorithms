@@ -103,9 +103,12 @@ const tabHowSum = (numbers, targetSum) => {
   table[0] = [];
 
   for (let i = 0; i < table.length; i++) {
+    //m iterations
     if (table[i] !== null) {
       for (let num of numbers) {
+        // n iterations
         if (table[i + num] === null) {
+          //process of copying over an array, m possible iterations
           table[i + num] = [...table[i], num]; //copy over current array and include value at i+num
         }
       }
