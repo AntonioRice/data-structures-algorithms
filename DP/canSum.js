@@ -38,7 +38,26 @@ const memoCanSum = (numbers, targetSum, memo = {}) => {
 
   return (memo[targetSum] = false);
 };
-console.log(memoCanSum([5, 3, 4, 7], 7)); // true =>
-console.log(memoCanSum([5, 3], 7)); // false
-console.log(memoCanSum([5, 1], 7)); // true
-console.log(memoCanSum([14, 7], 300)); // true
+// console.log(memoCanSum([5, 3, 4, 7], 7)); // true =>
+// console.log(memoCanSum([5, 3], 7)); // false
+// console.log(memoCanSum([5, 1], 7)); // true
+// console.log(memoCanSum([14, 7], 300)); // true
+
+// Time: O(nm),Space: O(m)
+// m = targetSum, n = numbers.length
+const tabCanSum = (numbers, targetSum) => {
+  const table = new Array(targetSum + 1).fill(false);
+  table[0] = true;
+
+  for (let i = 0; i <= table.length; i++) {
+    if (table[i] === true) {
+      for (let num of numbers) {
+        if (table[i + num] != null) table[i + num] = true;
+      }
+    }
+  }
+
+  return table[targetSum];
+};
+
+console.log(tabCanSum([5, 3, 4], 7));
