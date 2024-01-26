@@ -70,7 +70,7 @@ const bestSum = (nums, targetSum) => {
   return shortestComination;
 };
 
-console.log(bestSum([5, 3, 4, 7], 7));
+// console.log(bestSum([5, 3, 4, 7], 7));
 
 const memoAllCombinations = (nums, targetSum, memo = {}) => {
   if (targetSum === 0) return [[]];
@@ -92,5 +92,27 @@ const memoAllCombinations = (nums, targetSum, memo = {}) => {
   memo[targetSum] = allCombinations.length > 0 ? allCombinations : null;
   return memo[targetSum];
 };
-console.log(memoAllCombinations([5, 3, 4, 7], 7));
-console.log(memoAllCombinations([5, 3, 4, 7, 25], 100));
+
+// console.log(memoAllCombinations([5, 3, 4, 7], 7));
+// console.log(memoAllCombinations([5, 3, 4, 7, 25], 100));
+
+// Time: O(m^2*n), Space O(n^2)
+//m = targetSum, n = numbrs.length
+const tabHowSum = (numbers, targetSum) => {
+  const table = new Array(targetSum + 1).fill(null);
+  table[0] = [];
+
+  for (let i = 0; i < table.length; i++) {
+    if (table[i] !== null) {
+      for (let num of numbers) {
+        if (table[i + num] === null) {
+          table[i + num] = [...table[i], num]; //copy over current array and include value at i+num
+        }
+      }
+    }
+  }
+
+  return table[targetSum];
+};
+
+console.log(tabHowSum([5, 3, 4], 7));
