@@ -30,7 +30,7 @@ const lengthOfLastWordII = (s) => {
   counting = false;
 
   for (let i = s.length - 1; i >= 0; i--) {
-    while (s[i] !== " ") {
+    while (s[i] !== " " && i >= 0) {
       counting = true;
       count++;
       i--;
@@ -43,3 +43,4 @@ const lengthOfLastWordII = (s) => {
 console.log(lengthOfLastWordII("Hello World"));
 console.log(lengthOfLastWordII("   fly me   to   the moon  "));
 console.log(lengthOfLastWordII("luffy is still joyboy"));
+console.log(lengthOfLastWordII("a"));
