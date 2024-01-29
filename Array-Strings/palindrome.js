@@ -23,9 +23,9 @@ String.prototype.isPalindrome = function () {
 const isPalindrome = (num) => {
   if (num < 0) return false;
 
+  num = num.toString();
   let left = 0;
   let right = num.length - 1;
-  num = num.toString();
 
   while (left < right) {
     if (num[left] !== num[right]) {
@@ -42,3 +42,4 @@ console.log(isPalindrome(-121));
 console.log(isPalindrome(121));
 console.log(isPalindrome(1221));
 console.log(isPalindrome(1321));
+console.log(isPalindrome(10)); //false
