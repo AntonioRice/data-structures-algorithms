@@ -43,26 +43,42 @@ const generateTreeFromArray = require("../generateTreeFromArray.js");
 // };
 
 //wihtout using a pathSum queue
-var hasPathSum = function (root, targetSum) {
-  if (!root) return;
-  const queue = [[root, root.val]];
+// var hasPathSum = function (root, targetSum) {
+//   if (!root) return false;
+//   const queue = [[root, root.val]];
 
-  while (queue.length) {
-    const [currentNode, currentSum] = queue.shift();
+//   while (queue.length) {
+//     const [currentNode, currentSum] = queue.shift();
 
-    if (!currentNode.left && !currentNode.right && currentSum == targetSum) return true;
+//     if (!currentNode) return;
 
-    if (currentNode.left) {
-      queue.push([currentNode.left, currentNode.left.val + currentSum]);
-    }
+//     if (!currentNode.left && !currentNode.right && currentSum == targetSum) return true;
 
-    if (currentNode.right) {
-      queue.push([currentNode.right, currentNode.right.val + currentSum]);
-    }
-  }
+//     if (currentNode.left) {
+//       queue.push([currentNode.left, currentNode.left.val + currentSum]);
+//     }
 
-  return false;
+//     if (currentNode.right) {
+//       queue.push([currentNode.right, currentNode.right.val + currentSum]);
+//     }
+//   }
+
+//   return false;
+// };
+
+var hasPathSumDFS = function (root, targetSum) {
+  const dfs = (node, currentSum) => {
+    if (!node) return false;
+
+    currentSum += node.val;
+
+    if (!node.left && !node.right && currentSum === targetSum) return true;
+
+    return dfs(node.left, currentSum) || dfs(node.right, currentSum);
+  };
+
+  return dfs(root, 0);
 };
 
 const root1 = generateTreeFromArray([5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]);
-console.log(hasPathSum(root1, 22));
+console.log(hasPathSumDFS(root1, 22));
