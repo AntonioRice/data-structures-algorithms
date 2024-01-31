@@ -16,6 +16,7 @@ const generateTreeFromArray = require("./generateTreeFromArray");
  * @return {TreeNode}
  */
 // BFS
+// Time: O(n), Space O(n/2) ==> O(n)
 var invertTree = function (root) {
   if (!root) return root;
 
@@ -34,11 +35,21 @@ var invertTree = function (root) {
   return root;
 };
 
+// Recursive
+// Time: O(n), Space O(log n) best case for balanced tree, O(n) in unbalanced tree
+var invertTree2 = function (root) {
+  if (!root) return root;
+
+  [root.left, root.right] = [invertTree2(root.right), invertTree2(root.left)];
+
+  return root;
+};
+
 const root = generateTreeFromArray([4, 2, 7, 1, 3, 6, 9]);
-console.log(invertTree(root)); // [4,7,2,9,6,3,1]
+console.log(invertTree2(root)); // [4,7,2,9,6,3,1]
 
 const root2 = generateTreeFromArray([2, 1, 3]);
-console.log(invertTree(root2)); // [2,3,1]
+console.log(invertTree2(root2)); // [2,3,1]
 
 const root3 = generateTreeFromArray([]);
-console.log(invertTree(root3)); // []
+console.log(invertTree2(root3)); // []
