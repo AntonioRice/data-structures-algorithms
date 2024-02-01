@@ -11,22 +11,25 @@ const LinkedList = require("./linkedLists");
  * @param {ListNode} head
  * @return {boolean}
  */
+// Time: O(n), Space: O(1)
 var isPalindrome = function (head) {
   // find middle
   if (!head || !head.next) return true;
   let fast = head;
   let slow = head;
 
+  // O(n)
   while (fast && fast.next) {
     slow = slow.next;
     fast = fast.next.next;
   }
 
   // fast is at the last node, slow is at the middle node
-
   // reverse nodes from middle node (slow) to end
   let prev = null;
   let curr = slow;
+
+  // O(n/2) since only reversing half
   while (curr) {
     let next = curr.next;
     [curr.next, prev, curr] = [prev, curr, next];
@@ -38,6 +41,7 @@ var isPalindrome = function (head) {
   let ptr2 = prev;
 
   // check for val equality until null
+  // O(n)
   while (ptr1 && ptr2) {
     if (ptr1.value !== ptr2.value) return false;
     ptr1 = ptr1.next;
