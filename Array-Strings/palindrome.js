@@ -8,13 +8,16 @@
  */
 
 String.prototype.isPalindrome = function () {
-  const str = this.toLocaleLowerCase();
-  let val2 = str.replace(/[^a-z0-9]/g, "");
-  let right = val2.length - 1;
-  for (let i = 0; i < val2.length; i++) {
-    if (val2[i] !== val2[right]) {
+  const str = this.toLocaleLowerCase().replace(/[^a-z0-9]/g, "");
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) {
       return false;
     }
+
+    left++;
     right--;
   }
 
