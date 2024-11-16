@@ -3,12 +3,12 @@
 // const binarySearch = (arr, target) => {
 //     // 2 pointers method
 
-//     // 1) Divide the arr in half. Identify the firt and last element.
+//     // 1) Divide the arr in half. Identify the first and last element.
 //     let leftIndex = 0;
 //     let rightIndex = arr.length - 1;
 
 //     // 2) If the first and the last element is at the same index, then we're done.
-//     //    So we need to perform search while those aren't either the same, or croseed paths
+//     //    So we need to perform search while those aren't either the same, or crossed paths
 //     while (leftIndex <= rightIndex) {
 //       // 3) Find the middle index by adding dividing the sum of the left and right index by 2. Being sure to round down.
 //       let middleIndex = Math.floor((leftIndex + rightIndex) / 2);
@@ -18,7 +18,7 @@
 //         return middleIndex;
 //       }
 
-//       // 5) If we didnt find the target, we check if the target value is greater than the val in the middle of the arr, or less than the val
+//       // 5) If we didn't find the target, we check if the target value is greater than the val in the middle of the arr, or less than the val
 //       //    If the target is larger then the mid val, increment the left pointer by one
 //       if (target > arr[middleIndex]) {
 //         leftIndex = middleIndex + 1;
