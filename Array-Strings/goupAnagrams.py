@@ -8,6 +8,7 @@ from typing import List
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         map = defaultdict(list)
+        # O(n)
         for str in strs:
             freqStr = self.getFreqStr(str)
             map[freqStr].append(str)          
@@ -15,7 +16,7 @@ class Solution:
         return list(map.values())
 
     def getFreqStr(self, s: str):
-        freqStr = [0] * 26 # O(k)
+        freqStr = [0] * 26
         
         # O(k)
         for char in s:
