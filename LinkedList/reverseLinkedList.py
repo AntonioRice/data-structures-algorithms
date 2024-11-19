@@ -16,7 +16,18 @@ class Solution:
             prev , curr = curr, next
         
         return prev
+    
+    def deleteNote(self, head: Optional[ListNode], target: int) -> Optional[ListNode]:
+        if not head: return None
+        curr = head
         
+        while curr.next:
+            if(curr.next.val == target):
+                curr.next = curr.next.next
+                return head
+            curr = curr.next
+            
+        return head
         
 solution = Solution()
 def printVal(head):
@@ -38,5 +49,8 @@ def create_linked_list(values):
     return head
 
 list = create_linked_list([1,2,3,4,5,6,7,8])
-res = solution.reverse(list)
+# res = solution.reverse(list)
+# printVal(res)
+
+res = solution.deleteNote(list, 4)
 printVal(res)
