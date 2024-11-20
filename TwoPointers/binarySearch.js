@@ -40,8 +40,7 @@ const binarySearch = (arr, target) => {
 
   while (leftIndex <= rightIndex) {
     let middleIndex = Math.floor((leftIndex + rightIndex) / 2);
-    if (target === arr[middleIndex]) {
-      console.log("FOUND INDEX: " + middleIndex);
+    if (arr[middleIndex] == target) {
       return middleIndex;
     }
 
