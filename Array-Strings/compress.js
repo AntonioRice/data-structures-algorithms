@@ -1,4 +1,5 @@
 /**
+ * LC 443
  * Given an array of characters chars, compress it using the following algorithm:
  * Begin with an empty string s. For each group of consecutive repeating characters in chars:
  * If the group's length is 1, append the character to s.
@@ -12,34 +13,35 @@
  * @return {number}
  */
 var compress = function (chars) {
-  let index = 0;
-  let currLetter = 0;
+  let write = 0; // Pointer to write compressed characters
+  let read = 0; // Pointer to read characters
 
-  while (currLetter < chars.length) {
-    let j = currLetter;
+  while (read < chars.length) {
+    let char = chars[read];
     let count = 0;
-    while (j < chars.length && chars[currLetter] == chars[j]) {
-      j++;
+
+    // Count consecutive characters
+    while (read < chars.length && chars[read] === char) {
+      read++;
       count++;
     }
 
-    chars[index++] = chars[currLetter];
+    // Write the character
+    chars[write++] = char;
 
+    // Write the count (only if greater than 1)
     if (count > 1) {
-      let charArray = count.toString().split("");
-      for (let num of charArray) {
-        chars[index++] = num;
+      for (let digit of count.toString()) {
+        chars[write++] = digit;
       }
     }
-
-    currLetter = j;
   }
 
-  return index;
+  console.log(chars);
+  return write;
 };
 
-console.log(compress(["a"])); //["a"]
-console.log(compress(["a", "a", "b", "b", "c", "c", "c"])); //["a","2","b","2","c","3"]
-console.log(
-  compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"])
-); //[a, b, 1, 2]
+// Test cases
+console.log(compress(["a"])); // Output: 1, modifies chars to ["a"]
+console.log(compress(["a", "a", "b", "b", "c", "c", "c"])); // Output: 6, modifies chars to ["a","2","b","2","c","3"]
+console.log(compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"])); // Output: 4, modifies chars to ["a","b","1","2"]
