@@ -54,7 +54,7 @@ const binarySearch = (arr, target) => {
   return -1;
 };
 
-// O(logn) reducing input size by half each iteration
+// O(log n) reducing input size by half each iteration
 
 console.log(binarySearch([-9, 0, 2, 6, 8, 14, 16], 14));
 console.log(binarySearch([4, 5, 9, 10, 15], 4));
